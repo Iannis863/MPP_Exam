@@ -1,0 +1,25 @@
+# JetBrains IDEs (IntelliJ IDEA, PyCharm, WebStorm, etc.)
+.idea/
+
+# Gradle
+.gradle/
+build/
+
+# Gradle cache
+.gradle
+
+# Built application files
+*.jar
+*.war
+*.ear
+
+# Log files
+*.log
+logs/
+
+# OS-specific
+.DS_Store
+Thumbs.db
+
+# JVM crash logs
+hs_err_pid*
