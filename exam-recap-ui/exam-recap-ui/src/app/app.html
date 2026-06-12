@@ -1,0 +1,6 @@
+<form [formGroup]="authForm">
+  <label for="username">User Name: </label>
+  <input type="text" id="username" formControlName="username">
+  <button (click)="login()">Login</button>
+</form>
+<router-outlet></router-outlet>

@@ -1,0 +1,63 @@
+<div style="padding: 20px; font-family: sans-serif;">
+  <h2>Rock - Paper - Scissors</h2>
+
+  <div *ngIf="game">
+    <div style="background: #f0f0f0; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
+      <p><strong>Score (Wins):</strong> {{game.score}}</p>
+      <p><strong>Draws:</strong> {{game.draws}}</p>
+      <p><strong>Status:</strong> {{game.status}}</p>
+    </div>
+
+    <div *ngIf="game.status === 'STARTED' || game.status === 'ACTIVE'" style="margin-bottom: 20px;">
+      <h3>Make your move:</h3>
+      <button (click)="doMove('ROCK')" style="margin-right: 10px; padding: 10px 20px;">Rock</button>
+      <button (click)="doMove('PAPER')" style="margin-right: 10px; padding: 10px 20px;">Paper</button>
+      <button (click)="doMove('SCISSORS')" style="padding: 10px 20px;">Scissors</button>
+    </div>
+
+    <div *ngIf="lastMove" style="border: 1px solid #ccc; padding: 15px; margin-bottom: 20px;">
+      <h4>Last Move Result: {{lastMove.result}}</h4>
+      <p>You played: {{lastMove.userMove}}</p>
+      <p *ngIf="lastMove.result === 'LOSS'" style="color: red; font-weight: bold;">
+        You lost! A new game has been started automatically.
+      </p>
+    </div>
+  </div>
+
+  <div style="margin-top: 30px;">
+    <button (click)="showStats()" style="margin-right: 10px;">My Statistics</button>
+    <button (click)="showLeaderboard()" style="margin-right: 10px;">Global Leaderboard</button>
+  </div>
+
+  <!-- Stats Modal/Section -->
+  <div *ngIf="stats" style="margin-top: 20px; border-top: 2px solid #000; padding-top: 10px;">
+    <h3>My Stats</h3>
+    <p>Total Games Played: {{stats.totalGames}}</p>
+    <p>Highest Score Achieved: {{stats.maxScore}}</p>
+    <button (click)="hideStats()">Close Stats</button>
+  </div>
+
+  <!-- Leaderboard Modal/Section -->
+  <div *ngIf="leaderboard.length > 0" style="margin-top: 20px; border-top: 2px solid #000; padding-top: 10px;">
+    <h3>Leaderboard</h3>
+    <table border="1" style="width: 100%; border-collapse: collapse;">
+      <thead>
+        <tr>
+          <th>User</th>
+          <th>Score</th>
+          <th>Draws</th>
+          <th>Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let entry of leaderboard">
+          <td>{{entry.username}}</td>
+          <td>{{entry.score}}</td>
+          <td>{{entry.draws}}</td>
+          <td>{{entry.timestamp | date:'short'}}</td>
+        </tr>
+      </tbody>
+    </table>
+    <button (click)="hideLeaderboard()" style="margin-top: 10px;">Close Leaderboard</button>
+  </div>
+</div>
